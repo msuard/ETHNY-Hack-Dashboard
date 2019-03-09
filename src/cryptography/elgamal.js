@@ -1,76 +1,92 @@
-const JSBN =  require('jsbn');
+import * as JSBN from 'jsbn'
+import Utils from '../utils/utils'
+
 const BigInt = JSBN.BigInteger;
-const Utils = require('../utils/utils');
 
-exports.generateKeyPairAsync = async function (primeBits = 2048) {
-  return new Promise(async (resolve, reject) =>{
-    try{
+class ElGamal {
 
-      let qBigInt;
-      let pBigInt;
 
-      do {
-        qBigInt = await Utils.getBigPrimeAsync(primeBits - 1);
-        pBigInt = qBigInt.shiftLeft(1).add(BigInt.ONE);
-      } while (!pBigInt.isProbablePrime()); // Ensure that p is a prime
+  constructor(){
+    this.Utils = new Utils();
+  }
 
-      let gBigInt;
-      do {
-        // Avoid g=2 because of Bleichenbacher's attack
-        gBigInt = await Utils.getRandomBigIntAsync(new BigInt('3'), pBigInt);
-      } while (
-        gBigInt.modPowInt(2, pBigInt).equals(BigInt.ONE) ||
-        gBigInt.modPow(qBigInt, pBigInt).equals(BigInt.ONE) ||
-        // g|p-1
-        pBigInt.subtract(BigInt.ONE).remainder(gBigInt).equals(BigInt.ZERO) ||
-        // g^(-1)|p-1 (evades Khadir's attack)
-        pBigInt.subtract(BigInt.ONE).remainder(gBigInt.modInverse(pBigInt)).equals(BigInt.ZERO)
+  generateKeyPairAsync = async function (primeBits = 2048) {
+    return new Promise(async (resolve, reject) => {
+      try {
+
+        let qBigInt;
+        let pBigInt;
+
+        do {
+          qBigInt = await this.Utils.getBigPrimeAsync(primeBits - 1);
+          pBigInt = qBigInt.shiftLeft(1).add(BigInt.ONE);
+        } while (!pBigInt.isProbablePrime()); // Ensure that p is a prime
+
+        let gBigInt;
+        do {
+          // Avoid g=2 because of Bleichenbacher's attack
+          gBigInt = await this.Utils.getRandomBigIntAsync(new BigInt('3'), pBigInt);
+        } while (
+          gBigInt.modPowInt(2, pBigInt).equals(BigInt.ONE) ||
+          gBigInt.modPow(qBigInt, pBigInt).equals(BigInt.ONE) ||
+          // g|p-1
+          pBigInt.subtract(BigInt.ONE).remainder(gBigInt).equals(BigInt.ZERO) ||
+          // g^(-1)|p-1 (evades Khadir's attack)
+          pBigInt.subtract(BigInt.ONE).remainder(gBigInt.modInverse(pBigInt)).equals(BigInt.ZERO)
+          );
+
+        // Generate private key
+        const skBigInt = await this.Utils.getRandomBigIntAsync(
+          this.Utils.BIG_TWO,
+          pBigInt.subtract(BigInt.ONE)
         );
 
-      // Generate private key
-      const skBigInt = await Utils.getRandomBigIntAsync(
-        Utils.BIG_TWO,
-        pBigInt.subtract(BigInt.ONE)
-      );
+        // Generate public key
+        const ABigInt = gBigInt.modPow(skBigInt, pBigInt);
 
-      // Generate public key
-      const ABigInt = gBigInt.modPow(skBigInt, pBigInt);
+        console.log("\nPrivate Key Sk =", skBigInt.toString(10), "\n"); // PRIVATE KEY IS KEPT SECRET
 
-      console.log("\nPrivate Key Sk =", skBigInt.toString(10), "\n"); // PRIVATE KEY IS KEPT SECRET
+        console.log("Public Key Pk =", {
+          pBigInt: pBigInt.toString(10),
+          gBigInt: gBigInt.toString(10),
+          ABigInt: ABigInt.toString(10)
+        }, "\n"); // PUBLIC KEY IS MADE PUBLIC
 
-      console.log("Public Key Pk =", {
-        pBigInt: pBigInt.toString(10),
-        gBigInt: gBigInt.toString(10),
-        ABigInt: ABigInt.toString(10)
-      }, "\n"); // PUBLIC KEY IS MADE PUBLIC
+        resolve({pBigInt, gBigInt, ABigInt, skBigInt});
 
-      resolve({ pBigInt, gBigInt, ABigInt, skBigInt });
-
-    } catch(e){reject(e)}
-  })
-};
+      } catch (e) {
+        reject(e)
+      }
+    })
+  };
 
 
-exports.encryptMessage = async function (m, pBigInt, gBigInt, ABigInt){
-  return new Promise(async (resolve, reject) => {
-    try{
 
-      const mBigInt  = new BigInt(m.toString(), 10);
+  encryptMessage = async function (m, pBigInt, gBigInt, ABigInt) {
+    return new Promise(async (resolve, reject) => {
+      try {
 
-      const kBigInt = await Utils.getRandomNbitBigIntAsync(2048); // EPHEMERAL KEY
+        const mBigInt = new BigInt(m.toString(), 10);
 
-      // console.log("Ephemeral Key k = ", kBigInt.toString(10) + "\n");
+        const kBigInt = await this.Utils.getRandomNbitBigIntAsync(2048); // EPHEMERAL KEY
 
-      let c1BigInt = gBigInt.modPow(kBigInt, pBigInt);// CIPHERTEXT 1
+        // console.log("Ephemeral Key k = ", kBigInt.toString(10) + "\n");
 
-      let c2BigInt;
+        let c1BigInt = gBigInt.modPow(kBigInt, pBigInt);// CIPHERTEXT 1
 
-      c2BigInt = mBigInt.multiply(ABigInt.modPow(kBigInt, pBigInt)).remainder(pBigInt); // CIPHERTEXT 2
+        let c2BigInt;
 
-      // console.log("Ciphertext (c1, c2) =", c1BigInt.toString(10), c2BigInt.toString(10), "\n");
+        c2BigInt = mBigInt.multiply(ABigInt.modPow(kBigInt, pBigInt)).remainder(pBigInt); // CIPHERTEXT 2
 
-      resolve({ c1BigInt, c2BigInt, kBigInt })
+        // console.log("Ciphertext (c1, c2) =", c1BigInt.toString(10), c2BigInt.toString(10), "\n");
 
-    } catch(e) { reject(e) }
-  })
-};
+        resolve({c1BigInt, c2BigInt, kBigInt})
+
+      } catch (e) {
+        reject(e)
+      }
+    })
+  };
+}
+
+export default ElGamal
