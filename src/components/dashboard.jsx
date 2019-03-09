@@ -8,11 +8,18 @@ import Results from './vote-results/voteResults'
 import Stats from './vote-stats/voteStats'
 import App from "../App";
 
+import Web3Service from '../services/web3'
+
 class Dashboard extends React.Component {
 
 
   constructor(props){
-    super(props)
+    super(props);
+    this.web3 = new Web3Service();
+  }
+
+  async onSendBallotClick(){
+    await this.web3.sendBallotTransaction()
   }
 
 
@@ -34,7 +41,9 @@ class Dashboard extends React.Component {
         </div>
 
         <div className="row">
-          <Ballot/>
+          <Ballot
+            onSendBallotClick={ this.onSendBallotClick.bind(this) }
+          />
           <Encryption/>
           <Simulation/>
         </div>

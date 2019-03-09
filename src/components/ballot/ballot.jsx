@@ -24,6 +24,7 @@ class Ballot extends React.Component {
             <p className="card-text">Yes</p>
             <p className="card-text">No</p>
             <p className="card-text">What's for dinner?</p>
+            <button type="button" className="btn btn-primary" onClick={ this.props.onSendBallotClick }>Send Ballot</button>
           </div>
         </div>
       </div>
