@@ -33,3 +33,47 @@
 }
 
 
+html {
+  height: 100%;
+}
+
+head {
+
+}
+
+body {
+  height: 100%;
+}
+
+
+#root {
+  height: 100%;
+}
+
+#main {
+  background-image: linear-gradient(to bottom right, #370435, #D7172D);
+  min-height: 100%;
+}
+
+#header {
+  height: 50px;
+}
+
+#titles-container {
+  margin-left: 10%;
+}
+
+#dashboard-title {
+  color: #FFFFFF;
+}
+
+#vote-title {
+  color: #FFFFFF;
+  margin-top: 1%;
+}
+
+.card-container {
+  margin-left: 5%;
+  margin-top: 15%;
+  width: 90% !important;
+}
