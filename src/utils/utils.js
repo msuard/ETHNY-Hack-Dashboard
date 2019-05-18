@@ -6,13 +6,8 @@ const Promise = Bluebird.Promise;
 const BigInt = JSBN.BigInteger;
 Promise.promisifyAll(crypto);
 
-class Utils {
 
-  constructor(){
-
-  }
-
- BIG_TWO = new BigInt('2');
+export const BIG_TWO = new BigInt('2');
 
   /**
    * Trims a BigInt to a specific length.
@@ -21,7 +16,7 @@ class Utils {
    * @returns {BigInt}
    */
 
-  trimBigInt(bi, bits) {
+export function trimBigInt(bi, bits) {
     const trimLength = bi.bitLength() - bits;
     return trimLength > 0 ? bi.shiftRight(trimLength) : bi;
   }
@@ -31,7 +26,7 @@ class Utils {
    * @param {number} bits Number of bits in the output.
    * @returns {BigInt}
    */
- async getRandomNbitBigIntAsync(bits) {
+ export async function getRandomNbitBigIntAsync(bits) {
     return new Promise(async (resolve, reject) => {
       try {
         // Generate random bytes with the length of the range
@@ -39,14 +34,15 @@ class Utils {
         const bi = new BigInt(buf.toString('hex'), 16);
 
         // Trim the result and then ensure that the highest bit is set
-        resolve(this.trimBigInt(bi, bits).setBit(bits - 1));
+        resolve(trimBigInt(bi, bits).setBit(bits - 1));
       } catch (e) {
         reject(e)
       }
     })
-  };
+  }
 
-async generateRandomNbitBigIntListAsync(bits, length, index, list) {
+
+export async function generateRandomNbitBigIntListAsync(bits, length, index, list) {
     return new Promise(async (resolve, reject) => {
       try {
         if (index < length) {
@@ -60,9 +56,9 @@ async generateRandomNbitBigIntListAsync(bits, length, index, list) {
         reject(e)
       }
     })
-  };
+  }
 
-async generateRandomNbitBigIntListWithRandomTailLengthAsync(bits, maxTailBitLength, length, index, list) {
+export async function generateRandomNbitBigIntListWithRandomTailLengthAsync(bits, maxTailBitLength, length, index, list) {
     return new Promise(async (resolve, reject) => {
       try {
         if (index < length) {
@@ -77,7 +73,7 @@ async generateRandomNbitBigIntListWithRandomTailLengthAsync(bits, maxTailBitLeng
         reject(e)
       }
     })
-  };
+  }
 
   /**
    * Returns a random BigInt in the given range.
@@ -85,7 +81,7 @@ async generateRandomNbitBigIntListWithRandomTailLengthAsync(bits, maxTailBitLeng
    * @param {BigInt} max Maximum value (excluded).
    * @returns {BigInt}
    */
-async getRandomBigIntAsync(min, max) {
+  export async function getRandomBigIntAsync(min, max) {
     const range = max.subtract(min).subtract(BigInt.ONE);
 
     let bi;
@@ -99,14 +95,14 @@ async getRandomBigIntAsync(min, max) {
 
     // Return the result which satisfies the given range
     return bi;
-  };
+  }
 
   /**
    * Returns a random prime BigInt value.
    * @param {number} bits Number of bits in the output.
    * @returns {BigInt}
    */
-async getBigPrimeAsync(bits) {
+  export async function getBigPrimeAsync(bits) {
     // Generate a random odd number with the given length
     let bi = (await this.getRandomNbitBigIntAsync(bits)).or(BigInt.ONE);
 
@@ -116,7 +112,7 @@ async getBigPrimeAsync(bits) {
 
     // Trim the result and then ensure that the highest bit is set
     return this.trimBigInt(bi, bits).setBit(bits - 1);
-  };
+  }
 
   /**
    * Parses a BigInt.
@@ -124,11 +120,11 @@ async getBigPrimeAsync(bits) {
    * @returns {?BigInt}
    */
 
-parseBigInt(obj) {
+export async function parseBigInt(obj) {
     if (obj === undefined) return null;
 
     return obj instanceof Object ? obj : new BigInt(`${obj}`);
-  };
+  }
 
   /**
    * Computes the discrete base g logarithm of g^m  modulo p.
@@ -138,7 +134,7 @@ parseBigInt(obj) {
    * @param {BigInt} maximum possible m.
    * @returns {?BigInt}
    */
-async babyStepsGiantStepsDiscreteLog(gPowMBigInt, gBigInt, pBigInt, maxMBigInt) {
+  export async function babyStepsGiantStepsDiscreteLog(gPowMBigInt, gBigInt, pBigInt, maxMBigInt) {
     return new Promise(async (resolve, reject) => {
       try {
 
@@ -172,7 +168,6 @@ async babyStepsGiantStepsDiscreteLog(gPowMBigInt, gBigInt, pBigInt, maxMBigInt) 
         reject(e)
       }
     })
-  };
-}
+  }
 
-export default Utils
+

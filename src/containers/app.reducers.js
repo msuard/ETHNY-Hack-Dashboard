@@ -1,9 +1,11 @@
 import {
-  CLICK,
+  SELECT_SHIPPING_ID,
 } from "./actions";
 
 const defaultState = {
-  clicksCount: 0,
+  shippingId: "",
+  data: [],
+  decryptedData: []
 };
 
 
@@ -11,10 +13,12 @@ export function appReducers(state = defaultState , action) {
 
   switch (action.type) {
 
-    case CLICK:
+    case SELECT_SHIPPING_ID:
       return Object.assign({}, {
         ...state,
-        clicksCount: state.clicksCount + 1,
+        shippingId: action.shippingId,
+        data: action.data,
+        decryptedData: action.decryptedData
       });
     default:
       return state

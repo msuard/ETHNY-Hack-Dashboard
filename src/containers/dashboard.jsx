@@ -1,20 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Dashboard  from '../components/dashboard';
-import { clicked } from "./app.actions";
+import { selectShippingId } from "./app.actions";
 
+import * as apiService from '../services/apiService'
+import * as decryptData from '../cryptography/decryptData'
+
+const sk = "29913";
+const g = "3507";
+const p = "2147514143";
 
 const mapStateToProps = state => {
 
   return {
-    clicksCount: state.appReducers.clicksCount,
+    data: state.appReducers.data,
+    decryptedData:  state.appReducers.decryptedData
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onClick: () => {
-      dispatch(clicked());
+    onSelectShippingId: async (shippingId) => {
+
+      const data = JSON.parse(await apiService.getData(shippingId));
+
+
+      let decryptedData = await decryptData.decryptDataSet(data, [], 0);
+
+
+      dispatch(selectShippingId(shippingId, data, decryptedData));
+
+
     },
   }
 };

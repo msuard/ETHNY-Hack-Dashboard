@@ -1,9 +1,12 @@
 import {
-  CLICK,
+  SELECT_SHIPPING_ID,
 } from "./actions";
 
-export function clicked(){
+export function selectShippingId(shippingId, data, decryptedData){
   return {
-    type: CLICK,
+    type: SELECT_SHIPPING_ID,
+    shippingId,
+    data,
+    decryptedData
   };
 }

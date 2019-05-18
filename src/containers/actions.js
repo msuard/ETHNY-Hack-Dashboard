@@ -1,1 +1,1 @@
-export const CLICK = 'CLICK';
+export const SELECT_SHIPPING_ID = 'SELECT_SHIPPING_ID';
