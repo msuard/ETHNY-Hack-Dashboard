@@ -37,8 +37,11 @@ export async function decryptDataSet(data, decryptedData, index){
           p
         );
 
+        console.log("ORIENTAION " + orientation);
+        console.log(orientation == 5);
+
         let formattedOrientation;
-        if(orientation === 5){
+        if(orientation == 5){
           formattedOrientation = "Upside-Down!";
         } else {
           formattedOrientation = "Ok";

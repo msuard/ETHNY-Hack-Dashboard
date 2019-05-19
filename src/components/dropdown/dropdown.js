@@ -17,7 +17,7 @@ class Dropdown extends React.Component {
 
   componentDidUpdate(prevProps, prevState){
 
-    if(this.props.shippingIds !== prevProps.shippingIds){
+    if(this.props.shippingIds !== prevProps.shippingIds && typeof(this.props.shippingIds[0]) === 'string'){
       let newState = this.state;
       newState.shippingIdsList = this.props.shippingIds;
       newState.shippingId = this.props.shippingIds[0];
@@ -26,7 +26,7 @@ class Dropdown extends React.Component {
       this.setState(newState);
     }
 
-    if(this.props.shippingId !== prevProps.shippingId){
+    if(this.props.shippingId !== prevProps.shippingId && typeof(this.props.shippingId) === 'string'){
       let newState = this.state;
       newState.shippingId = this.props.shippingId;
       newState.formattedId = newState.shippingId.slice(0, 24) + '...';
@@ -40,7 +40,7 @@ class Dropdown extends React.Component {
 
   async componentDidMount(){
 
-    if(this.props.shippingIds[0]){
+    if(this.props.shippingIds[0] && typeof(this.props.shippingIds[0]) === 'string'){
       this.setState({
         shippingId: this.props.shippingIds[0],
         shippingIdsList: this.props.shippingIds,

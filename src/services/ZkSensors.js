@@ -1,5 +1,5 @@
 exports.contract = {
-  "address": "0x3a0175c2a27645431c387b2f53ec553a51d53aa5",
+  "address": "0x0cf96d63DeFEB6a523BAb39Cb94C1C6cce03eeA2",
   "contractName": "ZkSensors",
   "abi": [
     {

@@ -20,7 +20,7 @@ class Shipping extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(this.props.shippingIds !== prevProps.shippingIds && !prevProps.shippingId){
+    if(this.props.shippingIds !== prevProps.shippingIds && !prevProps.shippingId && typeof(this.props.shippingIds[0]) === 'string'){
 
       console.log(this.props.shippingIds[0]);
 
