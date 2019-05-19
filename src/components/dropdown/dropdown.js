@@ -51,7 +51,7 @@ class Dropdown extends React.Component {
 
     console.log(this.state)
 
-    // setInterval(this.props.refreshShippingIds, 500)
+    setInterval(this.props.refreshShippingIds, 500)
   }
 
   handleClick(shippingId){

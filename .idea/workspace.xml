@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f09ed9b6-9932-496d-a59e-83875bb1dece" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/dropdown/dropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dropdown/dropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/shippingCompany/shippingCompany.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shippingCompany/shippingCompany.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cryptography/decryptData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/cryptography/decryptData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/ZkSensors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ZkSensors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/dashboard.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/shippingCompany/shippingCompany.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="-360">
               <caret line="22" column="130" selection-start-line="22" selection-start-column="130" selection-end-line="22" selection-end-column="130" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -27,7 +25,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cryptography/decryptData.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
@@ -63,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/dropdown/dropdown.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="42" column="82" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="82" />
+            <state relative-caret-position="436">
+              <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -96,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/dashboard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-737">
-              <caret line="68" column="7" lean-forward="true" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+            <state relative-caret-position="497">
+              <caret line="136" selection-start-line="136" selection-end-line="136" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -120,7 +118,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/shippingCompany/data/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="255">
               <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -181,16 +179,16 @@
         <option value="$PROJECT_DIR$/src/components/dashboard.jsx" />
         <option value="$PROJECT_DIR$/src/components/client/verificsation/verification.jsx" />
         <option value="$PROJECT_DIR$/src/containers/actions.js" />
-        <option value="$PROJECT_DIR$/src/containers/dashboard.jsx" />
         <option value="$PROJECT_DIR$/src/containers/app.actions.js" />
         <option value="$PROJECT_DIR$/src/components/shippingCompany/data/data.js" />
         <option value="$PROJECT_DIR$/src/containers/app.reducers.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/components/shippingCompany/proof/proof.jsx" />
         <option value="$PROJECT_DIR$/src/services/ZkSensors.js" />
-        <option value="$PROJECT_DIR$/src/components/dropdown/dropdown.js" />
         <option value="$PROJECT_DIR$/src/components/shippingCompany/shippingCompany.jsx" />
         <option value="$PROJECT_DIR$/src/cryptography/decryptData.js" />
+        <option value="$PROJECT_DIR$/src/components/dropdown/dropdown.js" />
+        <option value="$PROJECT_DIR$/src/containers/dashboard.jsx" />
       </list>
     </option>
   </component>
@@ -263,6 +261,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="shippingCompany" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="voting-dashboard" type="b2602c69:ProjectViewProjectNode" />
+              <item name="voting-dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="shippingCompany" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="voting-dashboard" type="b2602c69:ProjectViewProjectNode" />
@@ -343,12 +349,12 @@
       <updated>1552121284345</updated>
       <workItem from="1552121286011" duration="27815000" />
       <workItem from="1552152147830" duration="10849000" />
-      <workItem from="1558234851355" duration="13406000" />
+      <workItem from="1558234851355" duration="13514000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74910000" />
+    <option name="totallyTimeSpent" value="75018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="964" extended-state="0" />
@@ -575,16 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/shippingCompany/data/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/app.reducers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -619,20 +615,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/dashboard.jsx">
+    <entry file="file://$PROJECT_DIR$/src/cryptography/decryptData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-737">
-          <caret line="68" column="7" lean-forward="true" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+        <state relative-caret-position="231">
+          <caret line="40" column="38" lean-forward="true" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/dropdown/dropdown.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="42" column="82" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="82" />
+        <state relative-caret-position="436">
+          <caret line="53" column="51" lean-forward="true" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/shippingCompany/data/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -641,7 +647,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/shippingCompany/shippingCompany.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="-360">
           <caret line="22" column="130" selection-start-line="22" selection-start-column="130" selection-end-line="22" selection-end-column="130" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -649,12 +655,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cryptography/decryptData.js">
+    <entry file="file://$PROJECT_DIR$/src/containers/dashboard.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="40" column="38" lean-forward="true" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
+        <state relative-caret-position="497">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

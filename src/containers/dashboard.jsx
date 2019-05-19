@@ -102,7 +102,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(gotData(formattedData, decryptedData));
 
       state.shippingId = shippingId;
-/*
+
       state.subscription = await web3.subscribeToDataPoints(shippingId, refreshData, async (shippingId, data) => {
 
         const formattedData = [];
@@ -134,7 +134,7 @@ const mapDispatchToProps = dispatch => {
       });
 
       dispatch(subscribedToContract(state.subscription));
-*/
+
     },
 
     onGenerateProof(){
