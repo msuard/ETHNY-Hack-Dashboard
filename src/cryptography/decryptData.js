@@ -2,9 +2,9 @@ import * as ElGamal from './elgamal'
 import * as JSBN from 'jsbn'
 
 const BigInt = JSBN.BigInteger;
-const sk = "29913";
-const g = "3507";
-const p = "2147514143";
+const sk = "22042594234080394";
+const g = "23114357934155028";
+const p = "170141183460469231731690190877448458819";
 
 export async function decryptDataSet(data, decryptedData, index){
 
@@ -30,13 +30,6 @@ export async function decryptDataSet(data, decryptedData, index){
           p
         );
 
-        const timestampEphemeralKey = ElGamal.decryptMessage(
-          data[index].timestampEphemeralKey.c1,
-          data[index].timestampEphemeralKey.c2,
-          sk,
-          p
-        );
-
         const orientationEphemeralKey = ElGamal.decryptMessage(
           data[index].orientationEphemeralKey.c1,
           data[index].orientationEphemeralKey.c2,
@@ -44,11 +37,18 @@ export async function decryptDataSet(data, decryptedData, index){
           p
         );
 
+        let formattedOrientation;
+        if(orientation === 5){
+          formattedOrientation = "Upside-Down!";
+        } else {
+          formattedOrientation = "Ok";
+        }
+
         decryptedData.push({
           timestamp,
-          orientation,
-          orientationEphemeralKey,
-          timestampEphemeralKey
+          orientation: formattedOrientation,
+          orientationEphemeralKey
+          // timestampEphemeralKey
         });
 
         resolve(decryptDataSet(data, decryptedData, index + 1))

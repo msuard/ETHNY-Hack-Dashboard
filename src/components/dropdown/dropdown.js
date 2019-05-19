@@ -9,8 +9,9 @@ class Dropdown extends React.Component {
     super(props);
 
     this.state = {
-      shippingId: "1",
-      shippingIdsList: [1,2]
+      shippingId: "",
+      shippingIdsList: [],
+      formattedId: ""
     }
   }
 
@@ -20,6 +21,16 @@ class Dropdown extends React.Component {
       let newState = this.state;
       newState.shippingIdsList = this.props.shippingIds;
       newState.shippingId = this.props.shippingIds[0];
+      newState.formattedId = newState.shippingId.slice(0, 24) + '...';
+
+      this.setState(newState);
+    }
+
+    if(this.props.shippingId !== prevProps.shippingId){
+      let newState = this.state;
+      newState.shippingId = this.props.shippingId;
+      newState.formattedId = newState.shippingId.slice(0, 24) + '...';
+
       this.setState(newState);
     }
 
@@ -29,12 +40,18 @@ class Dropdown extends React.Component {
 
   async componentDidMount(){
 
-    this.setState({
-      shippingId: this.props.shippingIds[0],
-      shippingIdsList: this.props.shippingIds
-    });
+    if(this.props.shippingIds[0]){
+      this.setState({
+        shippingId: this.props.shippingIds[0],
+        shippingIdsList: this.props.shippingIds,
+        formattedId: this.props.shippingIds[0].slice(0, 24) + '...'
+      });
+    }
+
 
     console.log(this.state)
+
+    // setInterval(this.props.refreshShippingIds, 500)
   }
 
   handleClick(shippingId){
@@ -45,6 +62,8 @@ class Dropdown extends React.Component {
 
       let newState = this.state;
       newState.shippingId = shippingId;
+      newState.formattedId = newState.shippingId.slice(0, 24) + '...';
+
       this.setState(newState);
 
       this.props.onSelectShippingId(shippingId)
@@ -55,18 +74,19 @@ class Dropdown extends React.Component {
 
   render(){
 
+
     return(
 
       <div className="dropdown">
-        <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          {this.state.shippingId}
+        <button id="dropdownButton" type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          { this.state.formattedId }
         </button>
         <div className="dropdown-menu">
           {
             this.state.shippingIdsList.map((shippingId) => {
 
               return(
-                <a className="dropdown-item" key={shippingId} onClick={this.handleClick(shippingId)}>{shippingId}</a>
+                <a className="dropdown-item" key={shippingId} onClick={this.handleClick(shippingId)}>{shippingId.toString().slice(0, 24) + '...'}</a>
               )
 
             })

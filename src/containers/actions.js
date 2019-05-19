@@ -1,1 +1,8 @@
 export const SELECT_SHIPPING_ID = 'SELECT_SHIPPING_ID';
+export const GOT_DATA = 'GOT_DATA';
+export const SUBSCRIBED = 'SUBSCRIBED';
+export const UNSUBSCRIBED = 'UNSUBSCRIBED';
+export const SHIPPING_IDS = 'SHIPPING_IDS';
+export const GENERATING_PROOF = 'GENERATING_PROOF';
+export const PROOF_SENT = 'PROOF_SENT';
+export const PROOF_GENERATED = 'PROOF_GENERATED';

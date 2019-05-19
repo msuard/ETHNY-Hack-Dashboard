@@ -34,7 +34,7 @@ class Dropdown extends React.Component {
         <thead>
         <tr>
           <th scope="col">Timestamp</th>
-          <th scope="col">orientation</th>
+          <th scope="col" className="dataRow">Package orientation</th>
         </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@ class Dropdown extends React.Component {
               return(
                 <tr key={dataPoint.timestamp}>
                   <td>{dataPoint.timestamp}</td>
-                  <td>{dataPoint.orientation}</td>
+                  <td className="dataRow">{dataPoint.orientation}</td>
                 </tr>
               )
 

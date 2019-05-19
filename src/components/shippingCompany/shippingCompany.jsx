@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import * as apiService from '../../services/apiService'
 
-import Dropdown from './dropdown/dropdown'
+import Dropdown from '../dropdown/dropdown'
 import Data from './data/data'
 import Proof from './proof/proof'
 
@@ -14,24 +14,27 @@ class Shipping extends React.Component {
     super(props);
 
     this.state = {
-      shippingIds: []
-
+      shippingIds: [],
+      shippingId: null
     }
   }
 
-  componentDidUpdate(prevPros, prevState){
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.shippingIds !== prevProps.shippingIds && !prevProps.shippingId){
+
+      console.log(this.props.shippingIds[0]);
+
+      this.props.onSelectShippingId(this.props.shippingIds[0])
+    }
 
   }
 
   async componentDidMount(){
 
-    const shippingIds =  JSON.parse(await apiService.getShippingIds());
+    console.log(this.props.web3);
 
-    let newState = this.state;
-    newState.shippingIds = shippingIds;
-    this.setState(newState);
+    await this.props.refreshShippingIds();
 
-    console.log(this.state.shippingIds)
 
   }
 
@@ -40,14 +43,16 @@ class Shipping extends React.Component {
 
     return(
 
-      <div id="shipping" className="col-5">
+      <div id="shipping" className="col-6">
         <div className="card card-container" style={{width: "18rem"}}>
           <div className="card-body">
             <div className="row">
-              <h5 className="card-title col-2">SHIPPING</h5>
-              <div className="offset-2 col-8">
+              <h5 className="card-title col-3">SHIPPING COMPANY DASHBOARD</h5>
+              <div className="offset-2 col-7">
                 <Dropdown
-                  shippingIds={this.state.shippingIds}
+                  shippingId={this.props.shippingId}
+                  refreshShippingIds={this.props.refreshShippingIds}
+                  shippingIds={this.props.shippingIds}
                   onSelectShippingId={this.props.onSelectShippingId}
                 />
               </div>
@@ -62,6 +67,12 @@ class Shipping extends React.Component {
               <Proof
                 data={this.props.data}
                 decryptedData={this.props.decryptedData}
+                web3={this.props.web3}
+                sendProof={this.props.sendProof}
+                generatingProof={this.props.generatingProof}
+                proofGenerated={this.props.proofGenerated}
+                onGenerateProof={this.props.onGenerateProof}
+                onProofGenerated={this.props.onProofGenerated}
               />
 
             </p>
